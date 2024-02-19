@@ -154,8 +154,10 @@ public class Inicio extends javax.swing.JFrame {
                 texto += linea + "\n";
             }
             if (texto.isEmpty()) {
+                System.out.println(texto);
                 txtinfo.setText(texto);
             } else {
+                System.out.println(texto);
                 txtinfo.setText(texto);
                 JOptionPane.showMessageDialog(null, "Archivo leído con éxito");
             }
