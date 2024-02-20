@@ -129,7 +129,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void txtinfoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtinfoCaretUpdate
         // TODO add your handling code here:
-      
+
         //nueTemporal.setTexto(aTexto);
     }//GEN-LAST:event_txtinfoCaretUpdate
 
@@ -151,7 +151,11 @@ public class Inicio extends javax.swing.JFrame {
             String texto = "";
             String linea = "";
             while (((linea = memoryspace.readLine()) != null)) {
+                if (linea.equals("aristas")){
+                    break;
+                }
                 texto += linea + "\n";
+
             }
             if (texto.isEmpty()) {
                 System.out.println(texto);
@@ -166,19 +170,7 @@ public class Inicio extends javax.swing.JFrame {
             String mensaje = "Se obtuvo un error: " + e.getMessage();
             JOptionPane.showMessageDialog(null, mensaje);
         }
-        /*if (seleccionar.showDialog(null, "Abrir") == JFileChooser.APPROVE_OPTION) {
-            archivo = seleccionar.getSelectedFile();
-            if (archivo.canRead()) {
-                if (archivo.getName().endsWith("txt")) {
-                    String documento = AbrirArchivo(archivo);
-                    txtinfo.setText(documento);
-                    
-                    
-                } else {
-                    JOptionPane.showConfirmDialog(null, "Archivo no compatible");
-                }
-            }
-        }*/
+
     }//GEN-LAST:event_buscarchivoActionPerformed
 
     /**

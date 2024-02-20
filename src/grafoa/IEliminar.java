@@ -4,6 +4,8 @@
  */
 package grafoa;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author KelvinCi
@@ -61,7 +63,10 @@ public class IEliminar extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Falta la logica para eliminar la ciudad
-        
+        /*if(lista<=4){
+            int nuevacity= JOptionPane.showInputDialog(null,"Cantidad de ciudades:"+lista+.getvalor+"no debe ser menor de 4 ciudades");
+            
+        }*/
         this.setVisible(false);
         Inicio nueva=new Inicio();
         nueva.setVisible(true);
