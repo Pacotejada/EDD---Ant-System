@@ -12,6 +12,7 @@ public class Nodo {
     private Object Cuerpo;
     private Nodo Pointer;
     private Lista listainterna;
+    
 
     public Nodo(Object Cuerpo) {
         this.Cuerpo = Cuerpo;
