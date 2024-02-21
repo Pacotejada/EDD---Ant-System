@@ -55,7 +55,7 @@ public class Lista {
         size ++;
     }
     
-    public void recorriido(){
+    public void recorrido(){
         Nodo Aux = cabeza;
         while (Aux != null){
             System.out.println(Aux.getCuerpo());
@@ -64,7 +64,16 @@ public class Lista {
         
     }
     
-    
+    public void AggArcoInterno(String ciudad, String destino, double longitud){
+        Nodo Aux = cabeza;
+        while (Aux != null){
+            if (Aux.getCuerpo() == ciudad){
+                Aux.getListainterna().AggArco(destino, longitud);
+            }
+            Aux = Aux.getPointer();
+        }
+        
+    }
     
     
     

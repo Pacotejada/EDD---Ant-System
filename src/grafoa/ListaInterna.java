@@ -46,12 +46,14 @@ public class ListaInterna {
             }
     }
     
-    public void recorriido(){
+    public void recorrido(){
         Arco Aux = Cabeza;
         while (Aux != null){
             System.out.println(Aux.getPointer());
             Aux = Aux.getPointer();
         }
     }
+    
+    
     
 }

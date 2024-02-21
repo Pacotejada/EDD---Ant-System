@@ -11,12 +11,12 @@ package grafoa;
 public class Nodo {
     private String Cuerpo;
     private Nodo Pointer;
-    private Lista listainterna;
+    private ListaInterna listainterna;
 
     public Nodo(String Cuerpo) {
         this.Cuerpo = Cuerpo;
         this.Pointer = null;
-        this.listainterna = null;
+        this.listainterna = new ListaInterna();
     }
 
     public String getCuerpo() {
@@ -35,11 +35,11 @@ public class Nodo {
         this.Pointer = Pointer;
     }
 
-    public Lista getListainterna() {
+    public ListaInterna getListainterna() {
         return listainterna;
     }
 
-    public void setListainterna(Lista listainterna) {
+    public void setListainterna(ListaInterna listainterna) {
         this.listainterna = listainterna;
     }
     
