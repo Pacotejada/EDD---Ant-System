@@ -9,21 +9,21 @@ package grafoa;
  * @author pedro
  */
 public class Nodo {
-    private Object Cuerpo;
+    private String Cuerpo;
     private Nodo Pointer;
     private Lista listainterna;
 
-    public Nodo(Object Cuerpo) {
+    public Nodo(String Cuerpo) {
         this.Cuerpo = Cuerpo;
         this.Pointer = null;
         this.listainterna = null;
     }
 
-    public Object getCuerpo() {
+    public String getCuerpo() {
         return Cuerpo;
     }
 
-    public void setCuerpo(Object Cuerpo) {
+    public void setCuerpo(String Cuerpo) {
         this.Cuerpo = Cuerpo;
     }
 

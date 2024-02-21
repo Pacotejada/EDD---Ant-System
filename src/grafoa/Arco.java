@@ -9,21 +9,21 @@ package grafoa;
  * @author pedro
  */
 public class Arco {
-    private int destino;
+    private String destino;
     private double longitud;
     private Arco Pointer;
 
-    public Arco(int destino, double longitud) {
+    public Arco(String destino, double longitud) {
         this.destino = destino;
         this.longitud = longitud;
         this.Pointer = null;
     }
 
-    public int getDestino() {
+    public String getDestino() {
         return destino;
     }
 
-    public void setDestino(int destino) {
+    public void setDestino(String destino) {
         this.destino = destino;
     }
 

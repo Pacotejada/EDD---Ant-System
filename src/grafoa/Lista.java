@@ -13,9 +13,9 @@ public class Lista {
     private Nodo ultimo;
     private int size;
 
-    public Lista(Nodo cabeza, Nodo ultimo) {
-        this.cabeza = cabeza;
-        this.ultimo = ultimo;
+    public Lista() {
+        this.cabeza = null;
+        this.ultimo = null;
         this.size = 0;
     }
 
@@ -43,16 +43,25 @@ public class Lista {
         this.size = size;
     }
     
-    public void AggNodo (Object cuerpo){
+    public void AggNodo (String cuerpo){
         Nodo nuevoNodo = new Nodo(cuerpo);
         if (size == 0){
-            Nodo ultimo =nuevoNodo;
-            Nodo cabeza = nuevoNodo;
+            this.ultimo = nuevoNodo;
+            this.cabeza = nuevoNodo;
         }else{
-            ultimo.setPointer(nuevoNodo);
-            ultimo = nuevoNodo;
+            this.ultimo.setPointer(nuevoNodo);
+            this.ultimo = nuevoNodo;
             }
         size ++;
+    }
+    
+    public void recorriido(){
+        Nodo Aux = cabeza;
+        while (Aux != null){
+            System.out.println(Aux.getCuerpo());
+            Aux = Aux.getPointer();
+        }
+        
     }
     
     
