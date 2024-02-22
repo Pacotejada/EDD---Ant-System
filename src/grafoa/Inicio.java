@@ -56,6 +56,7 @@ public class Inicio extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtinfo = new javax.swing.JTextArea();
         buscarchivo = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,6 +109,9 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPanel1.add(buscarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, -1, -1));
 
+        jLabel1.setText("txtinfo");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 50, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 400));
 
         pack();
@@ -132,10 +136,13 @@ public class Inicio extends javax.swing.JFrame {
 
         //nueTemporal.setTexto(aTexto);
     }//GEN-LAST:event_txtinfoCaretUpdate
-
+    
     private void cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarActionPerformed
         // TODO add your handling code here:
-
+        
+        if(txtinfo.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"No se puede dejar espacios en blanco\n lee un archivo con informacion");
+        }
     }//GEN-LAST:event_cargarActionPerformed
 
     private void buscarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarchivoActionPerformed
@@ -183,6 +190,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton eliminar;
     private javax.swing.JButton guardar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtinfo;

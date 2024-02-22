@@ -67,7 +67,7 @@ public class Lista {
     public void AggArcoInterno(String ciudad, String destino, double longitud){
         Nodo Aux = cabeza;
         while (Aux != null){
-            if (Aux.getCuerpo() == ciudad){
+            if (ciudad.equals(Aux.getCuerpo())){
                 Aux.getListainterna().AggArco(destino, longitud);
             }
             Aux = Aux.getPointer();
@@ -75,6 +75,30 @@ public class Lista {
         
     }
     
+    public void EliminarCiudad (String cuerpo){
+        Nodo Aux = cabeza;
+        while ( Aux != null){
+            if ( Aux.getCuerpo() == cuerpo ){
+                Aux = Aux.getPointer();
+                size --;
+            }
+            Aux = Aux.getPointer();
+        }
+    }
+    
+    public void EliminarCiudadInterna (String cuerpo){
+        Nodo Aux = cabeza;
+        while (Aux != null){
+            Arco Aux2 = Aux.getListainterna().getCabeza();
+            while (Aux2 != null ){
+                if (Aux2.getDestino() == cuerpo);
+                    Aux2 = Aux2.getPointer();
+                    size --;
+                Aux2 = Aux2.getPointer();
+            }
+            Aux = Aux.getPointer();
+        }
+    }
     
     
 }

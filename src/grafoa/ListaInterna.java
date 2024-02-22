@@ -9,6 +9,7 @@ package grafoa;
  * @author pedro
  */
 public class ListaInterna {
+
     private Arco Cabeza;
     private Arco ultimo;
 
@@ -28,12 +29,15 @@ public class ListaInterna {
     public Arco getUltimo() {
         return ultimo;
     }
-    public boolean isEmpty(){
-        return getCabeza()==null;
+
+    public boolean isEmpty() {
+        return getCabeza() == null;
     }
+
     public void setUltimo(Arco ultimo) {
         this.ultimo = ultimo;
     }
+<<<<<<< HEAD
     
     public void AggArco (String destino, double longitud){
         Arco nuevoArco = new Arco ( destino, longitud);
@@ -56,4 +60,18 @@ public class ListaInterna {
     
     
     
+=======
+
+    public void AggArco(int destino, double longitud) {
+        Arco nuevoArco = new Arco(destino, longitud);
+        if (isEmpty()) {
+            Arco ultimo = nuevoArco;
+            Arco cabeza = nuevoArco;
+        } else {
+            ultimo.setPointer(nuevoArco);
+            ultimo = nuevoArco;
+        }
+    }
+
+>>>>>>> 6684689031aceb5d0f2c22a308fcdb34aac61593
 }
