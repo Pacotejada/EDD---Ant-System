@@ -9,22 +9,26 @@ package grafoa;
  * @author pedro
  */
 public class Nodo {
-    private Object Cuerpo;
+    private String Cuerpo;
     private Nodo Pointer;
+<<<<<<< HEAD
+    private ListaInterna listainterna;
+=======
     private Lista listainterna;
     
+>>>>>>> 6684689031aceb5d0f2c22a308fcdb34aac61593
 
-    public Nodo(Object Cuerpo) {
+    public Nodo(String Cuerpo) {
         this.Cuerpo = Cuerpo;
         this.Pointer = null;
-        this.listainterna = null;
+        this.listainterna = new ListaInterna();
     }
 
-    public Object getCuerpo() {
+    public String getCuerpo() {
         return Cuerpo;
     }
 
-    public void setCuerpo(Object Cuerpo) {
+    public void setCuerpo(String Cuerpo) {
         this.Cuerpo = Cuerpo;
     }
 
@@ -36,11 +40,11 @@ public class Nodo {
         this.Pointer = Pointer;
     }
 
-    public Lista getListainterna() {
+    public ListaInterna getListainterna() {
         return listainterna;
     }
 
-    public void setListainterna(Lista listainterna) {
+    public void setListainterna(ListaInterna listainterna) {
         this.listainterna = listainterna;
     }
     

@@ -13,9 +13,9 @@ public class Lista {
     private Nodo ultimo;
     private int size;
 
-    public Lista(Nodo cabeza, Nodo ultimo) {
-        this.cabeza = cabeza;
-        this.ultimo = ultimo;
+    public Lista() {
+        this.cabeza = null;
+        this.ultimo = null;
         this.size = 0;
     }
 
@@ -43,20 +43,62 @@ public class Lista {
         this.size = size;
     }
     
-    public void AggNodo (Object cuerpo){
+    public void AggNodo (String cuerpo){
         Nodo nuevoNodo = new Nodo(cuerpo);
         if (size == 0){
-            Nodo ultimo =nuevoNodo;
-            Nodo cabeza = nuevoNodo;
+            this.ultimo = nuevoNodo;
+            this.cabeza = nuevoNodo;
         }else{
-            ultimo.setPointer(nuevoNodo);
-            ultimo = nuevoNodo;
+            this.ultimo.setPointer(nuevoNodo);
+            this.ultimo = nuevoNodo;
             }
         size ++;
     }
     
+    public void recorrido(){
+        Nodo Aux = cabeza;
+        while (Aux != null){
+            System.out.println(Aux.getCuerpo());
+            Aux = Aux.getPointer();
+        }
+        
+    }
     
+    public void AggArcoInterno(String ciudad, String destino, double longitud){
+        Nodo Aux = cabeza;
+        while (Aux != null){
+            if (ciudad.equals(Aux.getCuerpo())){
+                Aux.getListainterna().AggArco(destino, longitud);
+            }
+            Aux = Aux.getPointer();
+        }
+        
+    }
     
+    public void EliminarCiudad (String cuerpo){
+        Nodo Aux = cabeza;
+        while ( Aux != null){
+            if ( Aux.getCuerpo() == cuerpo ){
+                Aux = Aux.getPointer();
+                size --;
+            }
+            Aux = Aux.getPointer();
+        }
+    }
+    
+    public void EliminarCiudadInterna (String cuerpo){
+        Nodo Aux = cabeza;
+        while (Aux != null){
+            Arco Aux2 = Aux.getListainterna().getCabeza();
+            while (Aux2 != null ){
+                if (Aux2.getDestino() == cuerpo);
+                    Aux2 = Aux2.getPointer();
+                    size --;
+                Aux2 = Aux2.getPointer();
+            }
+            Aux = Aux.getPointer();
+        }
+    }
     
     
 }
