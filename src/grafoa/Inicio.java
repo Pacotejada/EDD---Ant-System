@@ -4,14 +4,24 @@
  */
 package grafoa;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import org.graphstream.graph.Edge;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.SingleGraph;
 
 /**
  *
@@ -136,13 +146,91 @@ public class Inicio extends javax.swing.JFrame {
 
         //nueTemporal.setTexto(aTexto);
     }//GEN-LAST:event_txtinfoCaretUpdate
-    
+
     private void cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarActionPerformed
-        // TODO add your handling code here:
-        
-        if(txtinfo.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"No se puede dejar espacios en blanco\n lee un archivo con informacion");
+        if (txtinfo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se puede dejar espacios en blanco\n lee un archivo con informacion");
+        } else {
+            Graph nuevoGrafo = new SingleGraph("El gran Grafo");
+            JFrame frame = new JFrame("Cuadro de carga");
+            JTextField textField = new JTextField("Presiona enter para ver el grafo");
+
+            // Agregar el JTextField al JFrame
+            frame.getContentPane().add(textField);
+
+            // Agregar un ActionListener al JTextField
+            textField.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Obtener el texto del JTextField
+                    String contenido = txtinfo.getText();
+
+                    // Dividir el contenido en líneas
+                    String[] lineas = contenido.split("\n");
+
+                    // Variables para almacenar nodos y aristas
+                    StringBuilder nodos = new StringBuilder();
+                    StringBuilder aristas = new StringBuilder();
+
+                    // Bandera para determinar si estamos leyendo nodos o aristas
+                    boolean leyendoNodos = true;
+
+                    // Procesar cada línea
+                    for (String linea : lineas) {
+                        if (linea.equals("aristas")) {
+
+                            leyendoNodos = false;
+                            continue;
+                        }
+                        if (linea.equals("ciudad")) {
+                            continue;
+                        }
+
+                        if (leyendoNodos) {
+                            //Aqui esta agregando el nodo al grafico
+
+                            Node nuevo = nuevoGrafo.addNode(linea);
+
+                            nuevo.setAttribute("ui.label", linea);
+                            nuevo.setAttribute("ui.style", "text-size:50;");
+
+                            // Si estamos leyendo nodos, añadir la linea al StringBuilder de nodos                       
+                            nodos.append(linea).append("\n");
+                        } else {
+                            //Aqui se busca de agregar las aristas(conexiones de los nodos)
+                            String[] partes = linea.split(",");
+                            String nodoOrigen = partes[0];
+                            System.out.println("Esto es el nodo origen" + nodoOrigen);
+                            String nodoDestino = partes[1];
+                            System.out.println("Esto es el nodo Destino:" + nodoDestino);
+                            double peso = Double.parseDouble(partes[2]);
+                            System.out.println("Esto es el peso:" + peso);
+
+                            Edge nuevaArista = nuevoGrafo.addEdge(nodoOrigen + nodoDestino, nodoOrigen, nodoDestino);
+                            nuevaArista.setAttribute("ui.label", peso);
+                            nuevaArista.setAttribute("ui.style", "text-size:25;");
+
+                            // Si estamos leyendo aristas, añadir la línea al StringBuilder de aristas
+                            aristas.append(linea).append("\n");
+                        }
+                    }
+
+                    // Imprimir nodos y aristas por separado
+                    System.out.println("Nodos:");
+                    System.out.println(nodos.toString());
+                    System.out.println("Aristas:");
+                    System.out.println(aristas.toString());
+                    nuevoGrafo.display();
+                }
+            });
+
+            // Configuraciones del JFrame
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(300, 200);
+            frame.setVisible(true);
         }
+
+
     }//GEN-LAST:event_cargarActionPerformed
 
     private void buscarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarchivoActionPerformed
@@ -158,17 +246,19 @@ public class Inicio extends javax.swing.JFrame {
             String texto = "";
             String linea = "";
             while (((linea = memoryspace.readLine()) != null)) {
-                if (linea.equals("aristas")){
+
+                /*if (linea.equals("aristas")) {//este metodo es para que imprima todo hasta que diga arista
+
                     break;
-                }
+                }*/
                 texto += linea + "\n";
 
             }
             if (texto.isEmpty()) {
-                System.out.println(texto);
+                //System.out.println(texto);
                 txtinfo.setText(texto);
             } else {
-                System.out.println(texto);
+                //System.out.println(texto);
                 txtinfo.setText(texto);
                 JOptionPane.showMessageDialog(null, "Archivo leído con éxito");
             }
@@ -177,6 +267,7 @@ public class Inicio extends javax.swing.JFrame {
             String mensaje = "Se obtuvo un error: " + e.getMessage();
             JOptionPane.showMessageDialog(null, mensaje);
         }
+
 
     }//GEN-LAST:event_buscarchivoActionPerformed
 
