@@ -95,6 +95,7 @@ public class IAgregar extends javax.swing.JFrame {
         if (!crearciudadtext.getText().isEmpty()) {
             String textcity = crearciudadtext.getText();
             Nodo newcity = new Nodo(textcity);
+            
             System.out.println(newcity.getCuerpo());// demostracion de que si imprime el valor agregado
             
             if (!conexionestext.getText().isEmpty()) {
