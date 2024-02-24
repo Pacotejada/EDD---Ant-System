@@ -11,12 +11,12 @@ package grafoa;
 public class Nodo {
     private String Cuerpo;
     private Nodo Pointer;
-<<<<<<< HEAD
+//<<<<<<< HEAD
     private ListaInterna listainterna;
-=======
-    private Lista listainterna;
+//=======
+    //private Lista listainterna;
     
->>>>>>> 6684689031aceb5d0f2c22a308fcdb34aac61593
+//>>>>>>> 6684689031aceb5d0f2c22a308fcdb34aac61593
 
     public Nodo(String Cuerpo) {
         this.Cuerpo = Cuerpo;
