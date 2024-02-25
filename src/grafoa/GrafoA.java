@@ -21,7 +21,7 @@ public class GrafoA {
         System.setProperty("org.graphstream.ui", "swing");
         Inicio u=new Inicio();
         u.setVisible(true);
-
+        u.setLocationRelativeTo(null);
         /*Graph n = new SingleGraph("nuevo grafo");
         n.addNode("A").setAttribute("ui.label", "A");
         n.addNode("B").setAttribute("ui.label", "B");

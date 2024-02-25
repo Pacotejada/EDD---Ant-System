@@ -32,9 +32,9 @@ public class IEliminar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         eliminarciudad = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        aceptar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,16 +50,13 @@ public class IEliminar extends javax.swing.JFrame {
         eliminarciudad.setText("Ej: 5");
         jPanel1.add(eliminarciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
 
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        aceptar.setText("Aceptar");
+        aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                aceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, -1, 30));
-
-        jLabel3.setText("eliminarciudad");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, -1, 20));
+        jPanel1.add(aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, -1, 30));
 
         jButton2.setText("Regresar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -69,27 +66,30 @@ public class IEliminar extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, -1, -1));
 
+        jLabel3.setText("eliminarciudad");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Falta la logica para eliminar la ciudad
-        /*if(lista<=4){
-            int nuevacity= JOptionPane.showInputDialog(null,"Cantidad de ciudades:"+lista+.getvalor+"no debe ser menor de 4 ciudades");
+    private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
+         
+        
+        if (!eliminarciudad.getText().isEmpty()) {
+            /*String deleted=eliminarciudad.getText();
+            Lista nuevalista=Inicio.ciudades;
+            nuevalista.EliminarCiudad(deleted);*/
             
-        }*/
-        if (eliminarciudad.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null,"Ingresa una ciudad a eliminar");
         }
         else{
+            JOptionPane.showMessageDialog(null,"Ingresa una ciudad a eliminar");
+        }
             this.setVisible(false);
             Inicio nueva = new Inicio();
             nueva.setVisible(true);
-        }
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_aceptarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -103,8 +103,8 @@ public class IEliminar extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aceptar;
     private javax.swing.JTextField eliminarciudad;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
