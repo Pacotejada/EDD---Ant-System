@@ -61,7 +61,7 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        add = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         cargar = new javax.swing.JButton();
@@ -75,13 +75,13 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Agregar ciudad");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        add.setText("Agregar ciudad");
+        add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
+        jPanel1.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
 
         eliminar.setText("Eliminar ciudad");
         eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +91,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPanel1.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, -1, -1));
 
-        guardar.setText("Guardar grafo");
+        guardar.setText("Guardar archivo");
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
@@ -134,13 +134,13 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
 
         this.setVisible(false);
         IAgregar nAgregar = new IAgregar();
         nAgregar.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
@@ -205,8 +205,11 @@ public class Inicio extends javax.swing.JFrame {
                             Node nuevo = nuevoGrafo.addNode(linea);
 
                             nuevo.setAttribute("ui.label", linea);
-                            nuevo.setAttribute("ui.style", "text-size:50;");
+                            nuevo.setAttribute("ui.label", linea);
+                            nuevo.setAttribute("ui.style", "text-size: 30; size-mode: fit; text-alignment: center; text-color: red; text-background-mode: rounded-box; text-padding: 20; fill-color: rgb(100,255,0);stroke-color: rgb(0,100,255); stroke-width: 20;");
 
+                            //nuevo.setAttribute("ui.style", "text-size:100;");
+                            //nuevo.setAttribute("ui.style", "text-size:100; fill-color: rgb(0,100,255);");
                             // Si estamos leyendo nodos, añadir la linea al StringBuilder de nodos                       
                             nodos.append(linea).append("\n");
                         } else {
@@ -288,7 +291,7 @@ public class Inicio extends javax.swing.JFrame {
     public static void CrearArchivo(String rutas) {
         String filename = JOptionPane.showInputDialog("Ingresa el nombre del archivo: ");
         File archivo;
-        String ruta="C:\\Users\\lenovo\\Escritorio";
+        String ruta = "C:\\Users\\lenovo\\Escritorio";
         //String rutas = "C:\\Users\\lenovo\\OneDrive\\Documentos";
 
         try {
@@ -316,7 +319,7 @@ public class Inicio extends javax.swing.JFrame {
     }
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
-        String rute="C:\\Users\\lenovo\\Escritorio";
+        String rute = "C:\\Users\\lenovo\\Escritorio";
         //String rutas = "C:\\Users\\lenovo\\OneDrive\\Documentos";
         //String rutas=JOptionPane.showInputDialog("Ingresa el nombre de la ruta: ");
         String nuevotexto = txtinfo.getText();
@@ -330,11 +333,11 @@ public class Inicio extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add;
     private javax.swing.JButton buscarchivo;
     private javax.swing.JButton cargar;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton guardar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
