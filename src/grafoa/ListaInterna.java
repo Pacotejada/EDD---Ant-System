@@ -37,41 +37,26 @@ public class ListaInterna {
     public void setUltimo(Arco ultimo) {
         this.ultimo = ultimo;
     }
-//<<<<<<< HEAD
     
     public void AggArco (String destino, double longitud){
-        Arco nuevoArco = new Arco ( destino, longitud);
+        Arco nuevoArco = new Arco (destino, longitud);
         if (isEmpty()){
             this.ultimo =nuevoArco;
             this.Cabeza = nuevoArco;
         }else{
             this.ultimo.setPointer(nuevoArco);
             this.ultimo = nuevoArco;
-            }
+        }
     }
     
-    public void recorrido(){
+    public void recorridoInterno(){
         Arco Aux = Cabeza;
+        
         while (Aux != null){
-            System.out.println(Aux.getPointer());
+            System.out.println(Aux.getDestino());
             Aux = Aux.getPointer();
         }
     }
     
     
-    
-//=======
-
-   /* public void AggArco(int destino, double longitud) {
-        Arco nuevoArco = new Arco(destino, longitud);
-        if (isEmpty()) {
-            Arco ultimo = nuevoArco;
-            Arco cabeza = nuevoArco;
-        } else {
-            ultimo.setPointer(nuevoArco);
-            ultimo = nuevoArco;
-        }
-    }*/
-
-//>>>>>>> 6684689031aceb5d0f2c22a308fcdb34aac61593
 }
