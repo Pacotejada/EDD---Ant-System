@@ -14,8 +14,9 @@ public class GrafoA {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         // TODO code application logic here
-        Bienvenida u=new Bienvenida();
+        Inicio u = new Inicio();
         
         u.setVisible(true);
     }

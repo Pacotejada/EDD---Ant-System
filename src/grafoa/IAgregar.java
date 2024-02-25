@@ -107,6 +107,8 @@ public class IAgregar extends javax.swing.JFrame {
                     String[] valores = linea.split(",");
                     valoruno = Integer.parseInt(valores[0]);
                     valordos = Integer.parseInt(valores[1]);
+                    
+                    
 
                 }
                 // se recorre la lista para obtener cada valor

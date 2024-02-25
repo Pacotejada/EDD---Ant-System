@@ -37,16 +37,15 @@ public class ListaInterna {
     public void setUltimo(Arco ultimo) {
         this.ultimo = ultimo;
     }
-<<<<<<< HEAD
     
     public void AggArco (String destino, double longitud){
-        Arco nuevoArco = new Arco ( destino, longitud);
-        if (isEmpty()){
-            this.ultimo =nuevoArco;
-            this.Cabeza = nuevoArco;
+        Arco nuevoArco = new Arco(destino, longitud);
+        if (this.isEmpty()){
+            this.setUltimo(nuevoArco);
+            this.setCabeza(nuevoArco);
         }else{
             this.ultimo.setPointer(nuevoArco);
-            this.ultimo = nuevoArco;
+            this.setUltimo(nuevoArco);
             }
     }
     
@@ -58,20 +57,4 @@ public class ListaInterna {
         }
     }
     
-    
-    
-=======
-
-    public void AggArco(int destino, double longitud) {
-        Arco nuevoArco = new Arco(destino, longitud);
-        if (isEmpty()) {
-            Arco ultimo = nuevoArco;
-            Arco cabeza = nuevoArco;
-        } else {
-            ultimo.setPointer(nuevoArco);
-            ultimo = nuevoArco;
-        }
-    }
-
->>>>>>> 6684689031aceb5d0f2c22a308fcdb34aac61593
 }

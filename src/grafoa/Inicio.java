@@ -136,12 +136,12 @@ public class Inicio extends javax.swing.JFrame {
 
         //nueTemporal.setTexto(aTexto);
     }//GEN-LAST:event_txtinfoCaretUpdate
-    
+
     private void cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarActionPerformed
         // TODO add your handling code here:
-        
-        if(txtinfo.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"No se puede dejar espacios en blanco\n lee un archivo con informacion");
+
+        if (txtinfo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se puede dejar espacios en blanco\n lee un archivo con informacion");
         }
     }//GEN-LAST:event_cargarActionPerformed
 
@@ -150,34 +150,50 @@ public class Inicio extends javax.swing.JFrame {
         JFileChooser fc = new JFileChooser();//Abre el cuadro de dialogo para que el usuario seleccione los archivos 
         fc.showOpenDialog(null);//Aqui se abre la ventana y se marca null para especificar que no tenga nada seleccionado
         File archivo = fc.getSelectedFile();//Almacena el archivo elegido por el usuario 
-        //Se pasa a usar try-catch porque puede que marque algun error 
+        
+        Lista ciudades = new Lista();
+        String leer = "";
+        String linea;
         try {
-            FileReader elquelee = new FileReader(archivo);//El encargado de leer los archivos
-            BufferedReader memoryspace = new BufferedReader(elquelee);//El bufferedReader se encarga de hacer un espacio de memoria
-            //para que la informacion que lea la tenga en la memoria y luego la presente donde se quiere mostrar
-            String texto = "";
-            String linea = "";
-            while (((linea = memoryspace.readLine()) != null)) {
-                if (linea.equals("aristas")){
-                    break;
+            FileReader fr = new FileReader(archivo);
+            BufferedReader br = new BufferedReader(fr);
+
+            
+            while ((linea = br.readLine()) != null) {
+                leer += linea + "\n";
+            }  
+            br.close();
+            
+            
+            if (!leer.isEmpty()) {
+                String[] lineas = leer.split("\n");
+                
+                int prueba = 0;
+                for (int i = 0; i < (lineas.length); i++) {
+                    System.out.println("Elemento " + i + ": " + lineas[i]);
+                    if (lineas[i].equals("ciudades")) {
+                        prueba = 0;
+                    } else if ((lineas[i]).equals("aristas")) {
+                        prueba = 1;
+                    } else if (prueba == 0) {
+                        ciudades.AggNodo(lineas[i]);
+                    } else if (prueba == 1) {
+                        String[] arquito = lineas[i].split(",");
+                        System.out.println(arquito[2]);
+                        ciudades.AggArcoInterno(arquito[0], arquito[1], Double.parseDouble(arquito[2]));
+                        
+                    }
+                    
                 }
-                texto += linea + "\n";
+                System.out.println("Guardado con exito");
 
             }
-            if (texto.isEmpty()) {
-                System.out.println(texto);
-                txtinfo.setText(texto);
-            } else {
-                System.out.println(texto);
-                txtinfo.setText(texto);
-                JOptionPane.showMessageDialog(null, "Archivo leído con éxito");
-            }
-
+            
         } catch (IOException e) {
-            String mensaje = "Se obtuvo un error: " + e.getMessage();
-            JOptionPane.showMessageDialog(null, mensaje);
+            System.out.println("error" + e);
         }
-
+        System.out.println(ciudades.getSize());
+        ciudades.recorrido();
     }//GEN-LAST:event_buscarchivoActionPerformed
 
     /**
