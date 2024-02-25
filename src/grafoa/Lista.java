@@ -59,6 +59,8 @@ public class Lista {
         Nodo Aux = cabeza;
         while (Aux != null){
             System.out.println(Aux.getCuerpo());
+            Aux.getListainterna().recorridoInterno();
+            System.out.println(">");
             Aux = Aux.getPointer();
         }
         
@@ -68,7 +70,16 @@ public class Lista {
         Nodo Aux = cabeza;
         while (Aux != null){
             if (ciudad.equals(Aux.getCuerpo())){
+                
                 Aux.getListainterna().AggArco(destino, longitud);
+            }
+            Aux = Aux.getPointer();
+        }
+        
+        Aux = cabeza;
+        while (Aux != null){
+            if (destino.equals(Aux.getCuerpo())){
+                Aux.getListainterna().AggArco(ciudad, longitud);
             }
             Aux = Aux.getPointer();
         }
@@ -78,7 +89,7 @@ public class Lista {
     public void EliminarCiudad (String cuerpo){
         Nodo Aux = cabeza;
         while ( Aux != null){
-            if ( Aux.getCuerpo() == cuerpo ){
+            if (Aux.getCuerpo().equals(cuerpo)){
                 Aux = Aux.getPointer();
                 size --;
             }
@@ -91,7 +102,7 @@ public class Lista {
         while (Aux != null){
             Arco Aux2 = Aux.getListainterna().getCabeza();
             while (Aux2 != null ){
-                if (Aux2.getDestino() == cuerpo);
+                if (Aux2.getDestino().equals(cuerpo));
                     Aux2 = Aux2.getPointer();
                     size --;
                 Aux2 = Aux2.getPointer();

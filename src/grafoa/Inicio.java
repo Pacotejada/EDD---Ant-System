@@ -239,36 +239,49 @@ public class Inicio extends javax.swing.JFrame {
         fc.showOpenDialog(null);//Aqui se abre la ventana y se marca null para especificar que no tenga nada seleccionado
         File archivo = fc.getSelectedFile();//Almacena el archivo elegido por el usuario 
         //Se pasa a usar try-catch porque puede que marque algun error 
+        
+        Lista ciudades = new Lista();
+        String leer = "";
+        String linea;
+        
         try {
-            FileReader elquelee = new FileReader(archivo);//El encargado de leer los archivos
-            BufferedReader memoryspace = new BufferedReader(elquelee);//El bufferedReader se encarga de hacer un espacio de memoria
-            //para que la informacion que lea la tenga en la memoria y luego la presente donde se quiere mostrar
-            String texto = "";
-            String linea = "";
-            while (((linea = memoryspace.readLine()) != null)) {
-
-                /*if (linea.equals("aristas")) {//este metodo es para que imprima todo hasta que diga arista
-
-                    break;
-                }*/
-                texto += linea + "\n";
-
+            FileReader fr = new FileReader(archivo);
+            BufferedReader br = new BufferedReader (fr);
+            
+            while((linea = br.readLine()) != null){
+                leer += linea +"\n";
             }
-            if (texto.isEmpty()) {
-                //System.out.println(texto);
-                txtinfo.setText(texto);
-            } else {
-                //System.out.println(texto);
-                txtinfo.setText(texto);
-                JOptionPane.showMessageDialog(null, "Archivo leído con éxito");
+            
+            br.close();
+            
+            if (!leer.isEmpty()){
+                String[] lineas = leer.split("\n");
+                
+                int prueba = -1;
+                for (int i = 0; i < (lineas.length); i++) {
+                    //System.out.println("Elemento " + i + ": " + lineas[i]);
+                    if (lineas[i].equals("ciudades")) {
+                        prueba = 0;
+                    } else if ((lineas[i]).equals("aristas")) {
+                        prueba = 1;
+                    } else if (prueba == 0) {
+                        //System.out.println(lineas[i]);
+                        ciudades.AggNodo(lineas[i]);
+                    } else if (prueba == 1) {
+                        String[] arquito = lineas[i].split(",");
+                        ciudades.AggArcoInterno(arquito[0], arquito[1], Double.parseDouble(arquito[2]));
+                        
+                    }
+                    
+                }
+                System.out.println("Guardado con exito");
             }
-
-        } catch (IOException e) {
-            String mensaje = "Se obtuvo un error: " + e.getMessage();
-            JOptionPane.showMessageDialog(null, mensaje);
+            
+        }catch(IOException e){
+            System.out.println("error" + e);
         }
-
-
+        //System.out.println(ciudades.getSize());
+        //ciudades.recorrido();
     }//GEN-LAST:event_buscarchivoActionPerformed
 
     /**
