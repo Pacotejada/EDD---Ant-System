@@ -84,47 +84,33 @@ public class IAgregar extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!crearciudadtext.getText().isEmpty()) {
             String textcity = crearciudadtext.getText();
-            Nodo newcity = new Nodo(textcity);
             
-            System.out.println(newcity.getCuerpo());// demostracion de que si imprime el valor agregado
             
             if (!conexionestext.getText().isEmpty()) {
                 String completetext = conexionestext.getText();
                 String[] lineas = completetext.split("\n");
                 String valoruno = "";
                 String valordos = "";
-
+                
+                
+                Lista ciudades= Inicio.ciudades;//se crea la lista usando el parametro del archivo inicio
+                ciudades.AggNodo(textcity);//agrego valores a las listas 
+                
                 for (String linea : lineas) {//de esta forma se recorre linea por linea o dato por dato
                     String[] valores = linea.split(",");
-                    //valoruno = Integer.parseInt(valores[0]);
-                    //valordos = Integer.parseInt(valores[1]);
                     valoruno=valores[0];
                     valordos=valores[1];
                     
-
-                }
-                /*Lista nuevalista=Inicio.ciudades;//se crea la lista usando el parametro del archivo inicio
-                
-                nuevalista.AggNodo(valoruno);//agrego valores a las listas 
-                nuevalista.AggNodo(valordos);
-                String[] nueva=valordos.split("\n");
-                for(int i=0;i<nueva.length;i++){
-                    String[] nuevaInterna = nueva[i].split(",");
-                    double distance;
-                    nuevalista.AggArco(ciudad,nuevaInterna[i][0],distance);
+                    
+                    ciudades.AggArcoInterno(textcity, valoruno, Double.parseDouble(valordos));
+                    
                 }
                 
-                // se recorre la lista para obtener cada valor
-                System.out.println(valoruno);
-                System.out.println(valordos);
-                //String invaluelist=String.valueOf(conexionestext.getText());
-                //newcity.setListainterna(listainterna);
-                
+                    
+                //ciudades.recorrido();
                 
                 
                 this.setVisible(false);
-                Inicio nueva = new Inicio();
-                nueva.setVisible(true);*/
             }
             else{
                 JOptionPane.showMessageDialog(null, "No puede haber campos vacios");

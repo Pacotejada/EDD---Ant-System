@@ -35,6 +35,8 @@ public class Inicio extends javax.swing.JFrame {
     File archivo;
     FileInputStream entrada;
     FileOutputStream salida;
+    
+    static public Lista ciudades = new Lista();
 
     public Inicio() {
         initComponents();
@@ -137,7 +139,6 @@ public class Inicio extends javax.swing.JFrame {
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
 
-        this.setVisible(false);
         IAgregar nAgregar = new IAgregar();
         nAgregar.setVisible(true);
     }//GEN-LAST:event_addActionPerformed
@@ -258,7 +259,6 @@ public class Inicio extends javax.swing.JFrame {
         File archivo = fc.getSelectedFile();//Almacena el archivo elegido por el usuario 
         //Se pasa a usar try-catch porque puede que marque algun error 
         
-        Lista ciudades = new Lista();
         String leer = "";
         String linea;
         
@@ -299,6 +299,7 @@ public class Inicio extends javax.swing.JFrame {
         }
         //System.out.println(ciudades.getSize());
         //ciudades.recorrido();
+        
     }//GEN-LAST:event_buscarchivoActionPerformed
     public static void CrearArchivo(String rutas) {
         String filename = JOptionPane.showInputDialog("Ingresa el nombre del archivo: ");
