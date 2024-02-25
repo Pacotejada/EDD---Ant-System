@@ -91,13 +91,13 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPanel1.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, -1, -1));
 
-        guardar.setText("Guardar archivo");
+        guardar.setText("Crear archivo");
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
             }
         });
-        jPanel1.add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
+        jPanel1.add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 120, -1));
 
         cargar.setText("Cargar grafo");
         cargar.addActionListener(new java.awt.event.ActionListener() {
@@ -253,46 +253,48 @@ public class Inicio extends javax.swing.JFrame {
 
     private void buscarchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarchivoActionPerformed
         // TODO add your handling code here:
+
         JFileChooser fc = new JFileChooser();//Abre el cuadro de dialogo para que el usuario seleccione los archivos 
         fc.showOpenDialog(null);//Aqui se abre la ventana y se marca null para especificar que no tenga nada seleccionado
         File archivo = fc.getSelectedFile();//Almacena el archivo elegido por el usuario 
-        //Se pasa a usar try-catch porque puede que marque algun error 
-        try {
-            FileReader elquelee = new FileReader(archivo);//El encargado de leer los archivos
-            BufferedReader memoryspace = new BufferedReader(elquelee);//El bufferedReader se encarga de hacer un espacio de memoria
-            //para que la informacion que lea la tenga en la memoria y luego la presente donde se quiere mostrar
-            String texto = "";
-            String linea = "";
-            while (((linea = memoryspace.readLine()) != null)) {
+        if (archivo != null) {
+            //Se pasa a usar try-catch porque puede que marque algun error 
+            try {
+                FileReader elquelee = new FileReader(archivo);//El encargado de leer los archivos
+                BufferedReader memoryspace = new BufferedReader(elquelee);//El bufferedReader se encarga de hacer un espacio de memoria
+                //para que la informacion que lea la tenga en la memoria y luego la presente donde se quiere mostrar
+                String texto = "";
+                String linea = "";
+                while (((linea = memoryspace.readLine()) != null)) {
 
-                /*if (linea.equals("aristas")) {//este metodo es para que imprima todo hasta que diga arista
+                    /*if (linea.equals("aristas")) {//este metodo es para que imprima todo hasta que diga arista
 
                     break;
                 }*/
-                texto += linea + "\n";
+                    texto += linea + "\n";
 
-            }
-            if (texto.isEmpty()) {
-                System.out.println(texto);
-                txtinfo.setText(texto);
-            } else {
-                System.out.println(texto);
-                txtinfo.setText(texto);
-                JOptionPane.showMessageDialog(null, "Archivo leído con éxito");
-            }
+                }
+                if (texto.isEmpty()) {
+                    System.out.println(texto);
+                    txtinfo.setText(texto);
+                } else {
+                    System.out.println(texto);
+                    txtinfo.setText(texto);
+                    JOptionPane.showMessageDialog(null, "Archivo leído con éxito");
+                }
 
-        } catch (IOException e) {
-            String mensaje = "Se obtuvo un error: " + e.getMessage();
-            JOptionPane.showMessageDialog(null, mensaje);
+            } catch (IOException e) {
+                String mensaje = "Se obtuvo un error: " + e.getMessage();
+                JOptionPane.showMessageDialog(null, mensaje);
+            }
         }
 
 
     }//GEN-LAST:event_buscarchivoActionPerformed
-    public static void CrearArchivo(String rutas) {
+    /*
+    public static void CrearArchivo(String ruta) {
         String filename = JOptionPane.showInputDialog("Ingresa el nombre del archivo: ");
         File archivo;
-        String ruta = "C:\\Users\\lenovo\\Escritorio";
-        //String rutas = "C:\\Users\\lenovo\\OneDrive\\Documentos";
 
         try {
             archivo = new File(ruta, filename + ".txt");
@@ -316,15 +318,18 @@ public class Inicio extends javax.swing.JFrame {
             String mensaje = "Hubo un error: " + e.getMessage();
             JOptionPane.showMessageDialog(null, mensaje);
         }
-    }
+    }*/
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
-        String rute = "C:\\Users\\lenovo\\Escritorio";
-        //String rutas = "C:\\Users\\lenovo\\OneDrive\\Documentos";
-        //String rutas=JOptionPane.showInputDialog("Ingresa el nombre de la ruta: ");
+        this.setVisible(false);
+        IguardarInfo nueva = new IguardarInfo();
+        nueva.setVisible(true);
+        nueva.setLocationRelativeTo(null);
+        /*String direccioncompleta =ruta.getText();
+        
         String nuevotexto = txtinfo.getText();
-        CrearArchivo(rute);
-        escribirEntxt(nuevotexto, rute);
+        CrearArchivo(direccioncompleta);
+        escribirEntxt(nuevotexto, direccioncompleta);*/
 
     }//GEN-LAST:event_guardarActionPerformed
 

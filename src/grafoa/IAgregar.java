@@ -105,8 +105,8 @@ public class IAgregar extends javax.swing.JFrame {
                 }
                 /*Lista nuevalista=Inicio.ciudades;//se crea la lista usando el parametro del archivo inicio
                 
-                nuevalista.AggNodo(valoruno);//agrego valores a las listas 
-                nuevalista.AggNodo(valordos);
+                nuevalista.AggNodo(valoruno);//agrego valores a las listas //se espera lo de pedro para terminar
+                nuevalista.AggNodo(valordos);//se agregan los nodos ciudades a las listas internas 
                 String[] nueva=valordos.split("\n");
                 for(int i=0;i<nueva.length;i++){
                     String[] nuevaInterna = nueva[i].split(",");
