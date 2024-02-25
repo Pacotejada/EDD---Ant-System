@@ -12,7 +12,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -59,7 +61,7 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        add = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         cargar = new javax.swing.JButton();
@@ -73,13 +75,13 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Agregar ciudad");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        add.setText("Agregar ciudad");
+        add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
+        jPanel1.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
 
         eliminar.setText("Eliminar ciudad");
         eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,10 +89,15 @@ public class Inicio extends javax.swing.JFrame {
                 eliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
+        jPanel1.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, -1, -1));
 
-        guardar.setText("Guardar grafo");
-        jPanel1.add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, -1, -1));
+        guardar.setText("Guardar archivo");
+        guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
 
         cargar.setText("Cargar grafo");
         cargar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +105,7 @@ public class Inicio extends javax.swing.JFrame {
                 cargarActionPerformed(evt);
             }
         });
-        jPanel1.add(cargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, -1, -1));
+        jPanel1.add(cargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, 60));
 
         txtinfo.setColumns(20);
         txtinfo.setRows(5);
@@ -109,7 +116,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(txtinfo);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 160, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 160, 230));
 
         buscarchivo.setText("Buscar Archivo");
         buscarchivo.addActionListener(new java.awt.event.ActionListener() {
@@ -117,22 +124,23 @@ public class Inicio extends javax.swing.JFrame {
                 buscarchivoActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, -1, -1));
+        jPanel1.add(buscarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
 
         jLabel1.setText("txtinfo");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 50, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 50, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
+
         this.setVisible(false);
         IAgregar nAgregar = new IAgregar();
         nAgregar.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
@@ -152,6 +160,11 @@ public class Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se puede dejar espacios en blanco\n lee un archivo con informacion");
         } else {
             Graph nuevoGrafo = new SingleGraph("El gran Grafo");
+            /*int hormiga=10; implementacion de hormigas con puntos rojos
+            for(int i=0;i<hormiga;i++){
+                Node hormigas=nuevoGrafo.addNode("Hormiga"+i);
+                hormigas.setAttribute("ui.style", "shape:circle;fill-color:red;size:5;");
+            }*/
             JFrame frame = new JFrame("Cuadro de carga");
             JTextField textField = new JTextField("Presiona enter para ver el grafo");
 
@@ -192,8 +205,11 @@ public class Inicio extends javax.swing.JFrame {
                             Node nuevo = nuevoGrafo.addNode(linea);
 
                             nuevo.setAttribute("ui.label", linea);
-                            nuevo.setAttribute("ui.style", "text-size:50;");
+                            nuevo.setAttribute("ui.label", linea);
+                            nuevo.setAttribute("ui.style", "text-size: 30; size-mode: fit; text-alignment: center; text-color: red; text-background-mode: rounded-box; text-padding: 20; fill-color: rgb(100,255,0);stroke-color: rgb(0,100,255); stroke-width: 20;");
 
+                            //nuevo.setAttribute("ui.style", "text-size:100;");
+                            //nuevo.setAttribute("ui.style", "text-size:100; fill-color: rgb(0,100,255);");
                             // Si estamos leyendo nodos, añadir la linea al StringBuilder de nodos                       
                             nodos.append(linea).append("\n");
                         } else {
@@ -214,7 +230,9 @@ public class Inicio extends javax.swing.JFrame {
                             aristas.append(linea).append("\n");
                         }
                     }
+                    //for(Node ant:nuevoGrafo){
 
+                    //}
                     // Imprimir nodos y aristas por separado
                     System.out.println("Nodos:");
                     System.out.println(nodos.toString());
@@ -255,10 +273,10 @@ public class Inicio extends javax.swing.JFrame {
 
             }
             if (texto.isEmpty()) {
-                //System.out.println(texto);
+                System.out.println(texto);
                 txtinfo.setText(texto);
             } else {
-                //System.out.println(texto);
+                System.out.println(texto);
                 txtinfo.setText(texto);
                 JOptionPane.showMessageDialog(null, "Archivo leído con éxito");
             }
@@ -270,17 +288,56 @@ public class Inicio extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_buscarchivoActionPerformed
+    public static void CrearArchivo(String rutas) {
+        String filename = JOptionPane.showInputDialog("Ingresa el nombre del archivo: ");
+        File archivo;
+        String ruta = "C:\\Users\\lenovo\\Escritorio";
+        //String rutas = "C:\\Users\\lenovo\\OneDrive\\Documentos";
+
+        try {
+            archivo = new File(ruta, filename + ".txt");
+            if (archivo.createNewFile()) {
+                JOptionPane.showMessageDialog(null, "Se ha creado correctamente");
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "No se ha podido crear el archivo");
+
+        }
+    }
+
+    public static void escribirEntxt(String contenido, String ruta) {
+        try {
+            PrintWriter escritor = new PrintWriter(new FileWriter(ruta, true));
+            escritor.println(contenido);
+            escritor.close();
+            JOptionPane.showMessageDialog(null, "Se ha escrito correctamente el mensaje");
+
+        } catch (IOException e) {
+            String mensaje = "Hubo un error: " + e.getMessage();
+            JOptionPane.showMessageDialog(null, mensaje);
+        }
+    }
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        // TODO add your handling code here:
+        String rute = "C:\\Users\\lenovo\\Escritorio";
+        //String rutas = "C:\\Users\\lenovo\\OneDrive\\Documentos";
+        //String rutas=JOptionPane.showInputDialog("Ingresa el nombre de la ruta: ");
+        String nuevotexto = txtinfo.getText();
+        CrearArchivo(rute);
+        escribirEntxt(nuevotexto, rute);
+
+    }//GEN-LAST:event_guardarActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add;
     private javax.swing.JButton buscarchivo;
     private javax.swing.JButton cargar;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton guardar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
