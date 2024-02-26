@@ -145,7 +145,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        
         IEliminar neEliminar = new IEliminar();
         neEliminar.setVisible(true);
     }//GEN-LAST:event_eliminarActionPerformed

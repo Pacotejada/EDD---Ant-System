@@ -78,24 +78,22 @@ public class IEliminar extends javax.swing.JFrame {
          
         
         if (!eliminarciudad.getText().isEmpty()) {
-            /*String deleted=eliminarciudad.getText();
+            String deleted=eliminarciudad.getText();
             Lista nuevalista=Inicio.ciudades;
-            nuevalista.EliminarCiudad(deleted);*/
+            nuevalista.EliminarCiudad(deleted);
+            
+            //nuevalista.recorrido();
             
         }
         else{
             JOptionPane.showMessageDialog(null,"Ingresa una ciudad a eliminar");
         }
             this.setVisible(false);
-            Inicio nueva = new Inicio();
-            nueva.setVisible(true);
     }//GEN-LAST:event_aceptarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Inicio nueva =new Inicio();
-        nueva.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
