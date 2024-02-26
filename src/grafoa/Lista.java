@@ -54,7 +54,7 @@ public class Lista {
     }
     
     
-    
+    /// esto hace que aagreguemos los nodos
     public void AggNodo (String cuerpo){
         Nodo nuevoNodo = new Nodo(cuerpo);
         if (size == 0){
@@ -67,6 +67,7 @@ public class Lista {
         size ++;
     }
     
+    ///recorridos de nodos
     public void recorrido(){
         Nodo Aux = cabeza;
         while (Aux != null){
@@ -78,6 +79,7 @@ public class Lista {
         
     }
     
+    /// agregar no nodos internos de cada ciudad haciendolo con el nombre de arquitos
     public void AggArcoInterno(String ciudad, String destino, double longitud){
         Nodo Aux = cabeza;
         while (Aux != null){
@@ -97,6 +99,8 @@ public class Lista {
         }
         
     }
+    
+    /// eliminacion del nodo ciudades y de sus arquitos
     
     public void EliminarCiudad(String x) {
         Nodo temp = cabeza;
@@ -128,6 +132,7 @@ public class Lista {
         }
     }
     
+    ///eliminacion del nodo interno osea lo arquitos
     public void EliminarCiudadInterna (String cuerpo){
         Nodo Aux = cabeza;
         while (Aux != null){

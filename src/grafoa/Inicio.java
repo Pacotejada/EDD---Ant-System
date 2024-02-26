@@ -4,6 +4,7 @@
  */
 package grafoa;
 
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -15,6 +16,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -157,9 +159,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_txtinfoCaretUpdate
 
     private void cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarActionPerformed
-        if (txtinfo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No se puede dejar espacios en blanco\n lee un archivo con informacion");
-        } else {
+        
             Graph nuevoGrafo = new SingleGraph("El gran Grafo");
             /*int hormiga=10; implementacion de hormigas con puntos rojos
             for(int i=0;i<hormiga;i++){
@@ -177,10 +177,10 @@ public class Inicio extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     // Obtener el texto del JTextField
-                    String contenido = txtinfo.getText();
+                    //String contenido = txtinfo.getText();
 
                     // Dividir el contenido en líneas
-                    String[] lineas = contenido.split("\n");
+                    //String[] lineas = contenido.split("\n");
 
                     // Variables para almacenar nodos y aristas
                     StringBuilder nodos = new StringBuilder();
@@ -209,15 +209,34 @@ public class Inicio extends javax.swing.JFrame {
                     }
                     
                     Aux = ciudades.getCabeza();
+                    String[] aristasPasadas = new String [100];
+                    int i = 0;
                     while (Aux != null) {
                         Arco Aux2 = Aux.getListainterna().getCabeza();
+                        
                         while (Aux2 != null) {
                             double peso = Aux2.getLongitud();
                             String nombreArista = Aux.getCuerpo() + Aux2.getDestino();
-                            if (!nuevoGrafo.hasEdge(nombreArista)) {
+                            String nombreAristainversa = Aux2.getDestino() + Aux.getCuerpo();
+                            boolean encontrado = false;
+                            int j = 0;
+                            while (aristasPasadas [j] != null){
+                                String aristaspasadasinfo = aristasPasadas [j];
+                                if (aristaspasadasinfo.equals(nombreArista )|| aristaspasadasinfo.equals(nombreAristainversa)){
+                                    encontrado = true;
+                                    break; // Terminar el bucle una vez que se encuentre el valor
+                                }
+                                j +=1;
+                            }
+                            
+                                
+                            if (encontrado == true) {
+                                System.out.println(nombreArista + Aux.getCuerpo() + Aux2.getDestino());
                                 Edge nuevaArista = nuevoGrafo.addEdge(nombreArista, Aux.getCuerpo(), Aux2.getDestino());
                                 nuevaArista.setAttribute("ui.label", peso);
                                 nuevaArista.setAttribute("ui.style", "text-size:25;");
+                                aristasPasadas[i] = nombreArista;
+                                i += 1;
                             }
                             Aux2 = Aux2.getPointer();
                         }
@@ -283,7 +302,7 @@ public class Inicio extends javax.swing.JFrame {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(300, 200);
             frame.setVisible(true);
-        }
+        
 
 
     }//GEN-LAST:event_cargarActionPerformed

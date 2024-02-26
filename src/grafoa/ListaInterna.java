@@ -49,7 +49,7 @@ public class ListaInterna {
     }
     
     
-    
+    /// agregar arcos
     public void AggArco (String destino, double longitud){
         Arco nuevoArco = new Arco (destino, longitud);
         if (isEmpty()){
@@ -62,6 +62,7 @@ public class ListaInterna {
         size ++;
     }
     
+    /// recorrido de los arquitos
     public void recorridoInterno(){
         Arco Aux = Cabeza;
         
@@ -71,7 +72,7 @@ public class ListaInterna {
         }
     }
     
-    
+    /// eliminacion de los arquitos
     public void EliminarArco(String x) {
         Arco temp = Cabeza;
         Arco prev = null; // Mantenemos una referencia al nodo anterior
