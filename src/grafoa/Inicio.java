@@ -72,7 +72,6 @@ public class Inicio extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtinfo = new javax.swing.JTextArea();
         buscarchivo = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -129,9 +128,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         jPanel1.add(buscarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
-
-        jLabel1.setText("txtinfo");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 50, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 400));
 
@@ -230,8 +226,8 @@ public class Inicio extends javax.swing.JFrame {
                             }
                             
                                 
-                            if (encontrado == true) {
-                                System.out.println(nombreArista + Aux.getCuerpo() + Aux2.getDestino());
+                            if (encontrado != true) {
+                                //System.out.println(nombreArista + Aux.getCuerpo() + Aux2.getDestino());
                                 Edge nuevaArista = nuevoGrafo.addEdge(nombreArista, Aux.getCuerpo(), Aux2.getDestino());
                                 nuevaArista.setAttribute("ui.label", peso);
                                 nuevaArista.setAttribute("ui.style", "text-size:25;");
@@ -406,7 +402,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton cargar;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton guardar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtinfo;
