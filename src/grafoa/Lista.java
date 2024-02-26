@@ -12,11 +12,13 @@ public class Lista {
     private Nodo cabeza;
     private Nodo ultimo;
     private int size;
+    private Nodo next;
 
     public Lista() {
         this.cabeza = null;
         this.ultimo = null;
         this.size = 0;
+        this.next = null;
     }
 
     public Nodo getCabeza() {
@@ -42,6 +44,16 @@ public class Lista {
     public void setSize(int size) {
         this.size = size;
     }
+
+    public Nodo getNext() {
+        return next;
+    }
+
+    public void setNext(Nodo next) {
+        this.next = next;
+    }
+    
+    
     
     public void AggNodo (String cuerpo){
         Nodo nuevoNodo = new Nodo(cuerpo);
@@ -86,13 +98,32 @@ public class Lista {
         
     }
     
-    public void EliminarCiudad (String cuerpo){
-        Nodo Aux = cabeza;
-        while ( Aux != null){
-            if (Aux.getCuerpo().equals(cuerpo)){
-                Aux = Aux.getPointer();
-                size --;
+    public void EliminarCiudad(String x) {
+        Nodo temp = cabeza;
+        Nodo prev = null; // Mantenemos una referencia al nodo anterior
+
+        if (cabeza != null) {
+            if (x.equals(cabeza.getCuerpo())) {
+                cabeza = cabeza.getPointer();
+                temp.setPointer(null);
+                size--;
+            } else {
+                while (temp != null && !temp.getCuerpo().equals(x)) {
+                    prev = temp; // Actualizamos el nodo anterior
+                    temp = temp.getPointer();
+                }
+                if (temp != null) { // Verificamos si encontramos el nodo
+                    Nodo deleter = temp;
+                    prev.setPointer(deleter.getPointer()); // Enlazamos el nodo anterior al siguiente
+                    deleter.setPointer(null); // Liberamos el nodo eliminado
+                    size--;
+                }
             }
+        }
+        
+        Nodo Aux = cabeza;
+        while (Aux != null){
+            Aux.getListainterna().EliminarArco(x);
             Aux = Aux.getPointer();
         }
     }
