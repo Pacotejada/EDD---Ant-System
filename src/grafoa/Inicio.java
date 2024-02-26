@@ -101,7 +101,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPanel1.add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
 
-        cargar.setText("Cargar grafo");
+        cargar.setText("Mostrar Grafo");
         cargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cargarActionPerformed(evt);
@@ -188,57 +188,93 @@ public class Inicio extends javax.swing.JFrame {
 
                     // Bandera para determinar si estamos leyendo nodos o aristas
                     boolean leyendoNodos = true;
+                    
+                          
+                    Nodo Aux = ciudades.getCabeza();
+                    while (Aux != null){
+                        Node nuevo = nuevoGrafo.addNode(Aux.getCuerpo());
 
-                    // Procesar cada línea
-                    for (String linea : lineas) {
-                        if (linea.equals("aristas")) {
+                        nuevo.setAttribute("ui.label", Aux.getCuerpo());
+                        nuevo.setAttribute("ui.label", Aux.getCuerpo());
+                        nuevo.setAttribute("ui.style", "text-size: 30; size-mode: fit; text-alignment: center; text-color: red; text-background-mode: rounded-box; text-padding: 20; fill-color: rgb(100,255,0);stroke-color: rgb(0,100,255); stroke-width: 20;");
 
-                            leyendoNodos = false;
-                            continue;
-                        }
-                        if (linea.equals("ciudad")) {
-                            continue;
-                        }
-
-                        if (leyendoNodos) {
-                            //Aqui esta agregando el nodo al grafico
-
-                            Node nuevo = nuevoGrafo.addNode(linea);
-
-                            nuevo.setAttribute("ui.label", linea);
-                            nuevo.setAttribute("ui.label", linea);
-                            nuevo.setAttribute("ui.style", "text-size: 30; size-mode: fit; text-alignment: center; text-color: red; text-background-mode: rounded-box; text-padding: 20; fill-color: rgb(100,255,0);stroke-color: rgb(0,100,255); stroke-width: 20;");
-
-                            //nuevo.setAttribute("ui.style", "text-size:100;");
-                            //nuevo.setAttribute("ui.style", "text-size:100; fill-color: rgb(0,100,255);");
-                            // Si estamos leyendo nodos, añadir la linea al StringBuilder de nodos                       
-                            nodos.append(linea).append("\n");
-                        } else {
-                            //Aqui se busca de agregar las aristas(conexiones de los nodos)
-                            String[] partes = linea.split(",");
-                            String nodoOrigen = partes[0];
-                            System.out.println("Esto es el nodo origen" + nodoOrigen);
-                            String nodoDestino = partes[1];
-                            System.out.println("Esto es el nodo Destino:" + nodoDestino);
-                            double peso = Double.parseDouble(partes[2]);
-                            System.out.println("Esto es el peso:" + peso);
-
-                            Edge nuevaArista = nuevoGrafo.addEdge(nodoOrigen + nodoDestino, nodoOrigen, nodoDestino);
-                            nuevaArista.setAttribute("ui.label", peso);
-                            nuevaArista.setAttribute("ui.style", "text-size:25;");
-
-                            // Si estamos leyendo aristas, añadir la línea al StringBuilder de aristas
-                            aristas.append(linea).append("\n");
-                        }
+                        //nuevo.setAttribute("ui.style", "text-size:100;");
+                        //nuevo.setAttribute("ui.style", "text-size:100; fill-color: rgb(0,100,255);");
+                        // Si estamos leyendo nodos, añadir la linea al StringBuilder de nodos                       
+                        nodos.append(Aux.getCuerpo()).append("\n");
+                        
+                        
+                        
+                        Aux = Aux.getPointer();
                     }
-                    //for(Node ant:nuevoGrafo){
+                    
+                    Aux = ciudades.getCabeza();
+                    while (Aux != null) {
+                        Arco Aux2 = Aux.getListainterna().getCabeza();
+                        while (Aux2 != null) {
+                            double peso = Aux2.getLongitud();
+                            String nombreArista = Aux.getCuerpo() + Aux2.getDestino();
+                            if (!nuevoGrafo.hasEdge(nombreArista)) {
+                                Edge nuevaArista = nuevoGrafo.addEdge(nombreArista, Aux.getCuerpo(), Aux2.getDestino());
+                                nuevaArista.setAttribute("ui.label", peso);
+                                nuevaArista.setAttribute("ui.style", "text-size:25;");
+                            }
+                            Aux2 = Aux2.getPointer();
+                        }
+                        aristas.append(Aux.getCuerpo()).append("\n");
+                        Aux = Aux.getPointer();
+                    }
+
+//                    // Procesar cada línea
+//                    for (String linea : lineas) {
+//                        if (linea.equals("aristas")) {
+//
+//                            leyendoNodos = false;
+//                            continue;
+//                        }
+//                        if (linea.equals("ciudades")) {
+//                            continue;
+//                        }
+//
+//                        if (leyendoNodos) {
+//                            //Aqui esta agregando el nodo al grafico
+//
+//                            Node nuevo = nuevoGrafo.addNode(linea);
+//
+//                            nuevo.setAttribute("ui.label", linea);
+//                            nuevo.setAttribute("ui.label", linea);
+//                            nuevo.setAttribute("ui.style", "text-size: 30; size-mode: fit; text-alignment: center; text-color: red; text-background-mode: rounded-box; text-padding: 20; fill-color: rgb(100,255,0);stroke-color: rgb(0,100,255); stroke-width: 20;");
+//
+//                            //nuevo.setAttribute("ui.style", "text-size:100;");
+//                            //nuevo.setAttribute("ui.style", "text-size:100; fill-color: rgb(0,100,255);");
+//                            // Si estamos leyendo nodos, añadir la linea al StringBuilder de nodos                       
+//                            nodos.append(linea).append("\n");
+//                        } else {
+//                            //Aqui se busca de agregar las aristas(conexiones de los nodos)
+//                            String[] partes = linea.split(",");
+//                            String nodoOrigen = partes[0];
+//                            System.out.println("Esto es el nodo origen" + nodoOrigen);
+//                            String nodoDestino = partes[1];
+//                            System.out.println("Esto es el nodo Destino:" + nodoDestino);
+//                            double peso = Double.parseDouble(partes[2]);
+//                            System.out.println("Esto es el peso:" + peso);
+//
+//                            Edge nuevaArista = nuevoGrafo.addEdge(nodoOrigen + nodoDestino, nodoOrigen, nodoDestino);
+//                            nuevaArista.setAttribute("ui.label", peso);
+//                            nuevaArista.setAttribute("ui.style", "text-size:25;");
+//
+//                            // Si estamos leyendo aristas, añadir la línea al StringBuilder de aristas
+//                            aristas.append(linea).append("\n");
+//                        }
+//                    }
+//                    //for(Node ant:nuevoGrafo){
 
                     //}
                     // Imprimir nodos y aristas por separado
-                    System.out.println("Nodos:");
-                    System.out.println(nodos.toString());
-                    System.out.println("Aristas:");
-                    System.out.println(aristas.toString());
+//                    System.out.println("Nodos:");
+//                    System.out.println(nodos.toString());
+//                    System.out.println("Aristas:");
+//                    System.out.println(aristas.toString());
                     nuevoGrafo.display();
                 }
             });
