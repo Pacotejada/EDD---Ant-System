@@ -53,7 +53,6 @@ public class Lista {
         this.next = next;
     }
     
-    
     /// esto hace que aagreguemos los nodos
     public void AggNodo (String cuerpo){
         Nodo nuevoNodo = new Nodo(cuerpo);
@@ -99,9 +98,7 @@ public class Lista {
         }
         
     }
-    
-    /// eliminacion del nodo ciudades y de sus arquitos
-    
+
     public void EliminarCiudad(String x) {
         Nodo temp = cabeza;
         Nodo prev = null; // Mantenemos una referencia al nodo anterior

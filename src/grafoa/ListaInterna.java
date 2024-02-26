@@ -47,8 +47,6 @@ public class ListaInterna {
     public void setSize(int size) {
         this.size = size;
     }
-    
-    
     /// agregar arcos
     public void AggArco (String destino, double longitud){
         Arco nuevoArco = new Arco (destino, longitud);
@@ -96,5 +94,6 @@ public class ListaInterna {
             }
         }
     }
+    
     
 }
