@@ -383,12 +383,19 @@ public class Inicio extends javax.swing.JFrame {
     }
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
-        String rute = "C:\\Users\\lenovo\\Escritorio";
+        //String rute = "C:\\Users\\lenovo\\Escritorio";
         //String rutas = "C:\\Users\\lenovo\\OneDrive\\Documentos";
         //String rutas=JOptionPane.showInputDialog("Ingresa el nombre de la ruta: ");
-        String nuevotexto = txtinfo.getText();
-        CrearArchivo(rute);
-        escribirEntxt(nuevotexto, rute);
+        //String nuevotexto = txtinfo.getText();
+        //CrearArchivo(rute);
+        //escribirEntxt(nuevotexto, rute);
+       
+                                              
+        this.setVisible(false);
+        IguardarInfo nueva = new IguardarInfo();
+        nueva.setVisible(true);
+        nueva.setLocationRelativeTo(null);
+
 
     }//GEN-LAST:event_guardarActionPerformed
 
